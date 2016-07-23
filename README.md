@@ -16,7 +16,7 @@ git clone git@github.com:webcyou/countup-timer-js.git
 
 **Install with [Bower](http://bower.io):**
 ```
-bower install countup-timer-js
+bower install countup-timer.js
 ```
 
 **Install with [npm](https://www.npmjs.com):**
