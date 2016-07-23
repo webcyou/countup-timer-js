@@ -25,11 +25,11 @@ var CountUpTimer;
             };
             countFunc();
         }
-        CountUpTimerModel.prototype.countUp = function (callBack) {
+        CountUpTimerModel.prototype.countUp = function (fn) {
             var that = this;
             return setTimeout(function () {
                 that.countUpSecond();
-                callBack();
+                fn();
             }, that.COUNT_UP_MSEC);
         };
         CountUpTimerModel.prototype.setTimesNumber = function (splitTimes) {

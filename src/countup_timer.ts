@@ -26,8 +26,8 @@ module CountUpTimer {
       this.setTimesNumber(times.split(/:|：/g));
       this.setTimes();
 
-      var countFunc: Function = ()=> {
-        that.countUp(()=> {
+      var countFunc: Function = () => {
+        that.countUp(() => {
           that.setTimes();
           if(fn) {
             fn(that.times, that.isNextDay);
@@ -39,11 +39,11 @@ module CountUpTimer {
       countFunc();
     }
 
-    private countUp(callBack: Function) {
+    private countUp(fn: Function) {
       var that = this;
-      return setTimeout(()=> {
+      return setTimeout(() => {
         that.countUpSecond();
-        callBack();
+        fn();
       }, that.COUNT_UP_MSEC);
     }
 
