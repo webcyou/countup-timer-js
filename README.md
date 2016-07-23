@@ -60,7 +60,7 @@ timer.subscribe(function(times, isNextDay) {
 
 ```
 new CountUpTimer(Times, function(times, isNextDay) {
-
+  ...
 });
 ```
 
