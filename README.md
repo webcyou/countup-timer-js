@@ -16,13 +16,13 @@ git clone git@github.com:webcyou/countup-timer-js.git
 
 **Install with [Bower](http://bower.io):**
 ```
-bower install countup_timer_js
+bower install countup-timer-js
 ```
 
 **Install with [npm](https://www.npmjs.com):**
 
 ```
-npm install countup_timer_js
+npm install countup-timer-js
 ```
 
 
@@ -48,6 +48,7 @@ new CountUpTimer(Times, callBack);
 
 ```
 var timer = new CountUpTimer(Times);
+
 timer.subscribe(function(times, isNextDay) {
   ...
 });
