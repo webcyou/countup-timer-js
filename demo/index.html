@@ -15,7 +15,7 @@
           nowTimes = date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds(),
           timeElem = document.getElementById('timer');
 
-      new global.CountUpTimer(nowTimes, function(times, isNextDay) {
+      new CountUpTimer(nowTimes, function(times, isNextDay) {
           timeElem.innerText = times;
           if(isNextDay) {
               location.reload();
@@ -24,4 +24,3 @@
   </script>
 </body>
 </html>
-
