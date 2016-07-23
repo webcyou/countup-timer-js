@@ -1,7 +1,7 @@
 {
   "name": "countup-timer-js",
   "version": "1.0.0",
-  "description": "",
+  "description": "CountUpTimerJS - RealTime CountUp Timer JavaScript Library",
   "main": "dist/countup_timer.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
