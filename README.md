@@ -5,7 +5,7 @@ CountUpTimerJS - RealTime CountUp Timer JavaScript Library
 カウントアップタイマー、JavaScriptライブラリです。
 
 ### demo
-[デモページ]()
+[デモページ](https://webcyou.github.io/countup_timer/)
 
 ###  Quick start
 
