@@ -23,7 +23,7 @@ var SOURCE_DIR = 'src',
   DIST_DEMO = 'public',
   DIST_DIR = 'dist';
 
-var htmlFiles = DEMO_DIR + '/html/**/*.html';
+var htmlFiles = DEMO_DIR + '/**/*.html';
 var scssFiles = DEMO_DIR + '/scss/**/*.scss';
 var cssFiles = DEMO_DIR + '/**/*.css';
 var jsFiles = [
@@ -73,29 +73,24 @@ gulp.task('sass', function() {
       outputStyle: 'expanded'
     })
     .on('error', sass.logError))
-    .pipe(gulp.dest(DEMO_DIR + '/css'));
-});
-
-gulp.task('css.copy', function() {
-  return gulp.src(cssFiles)
-    .pipe(autoprefixer({
-      browsers: ['last 2 versions', 'ie 8', 'ios 5', 'android 2.3'],
-      cascade: false
-    }))
-    .pipe(gulp.dest( DIST_DEMO + '/css/' ));
-});
-
-gulp.task('css.copy.dist', function() {
-  return gulp.src(cssFiles)
-    .pipe(gulp.dest( DIST_DEMO + '/css/' ));
+    .pipe(gulp.dest( DEMO_DIR + '/css'));
 });
 
 gulp.task('css.min', function() {
   gulp.src(cssFiles)
+    .pipe(autoprefixer({
+      browsers: ['last 2 versions', 'ie 8', 'ios 5', 'android 2.3'],
+      cascade: false
+    }))
     .pipe(cssmin())
-    .pipe(gulp.dest( DIST_DEMO + '/css/' ));
+    .pipe(gulp.dest( DEMO_DIR ));
 });
 
+gulp.task('css.copy', function() {
+  return gulp.src(cssFiles)
+    .pipe(cssmin())
+    .pipe(gulp.dest( DIST_DEMO ));
+});
 
 /**
  * JavaScript Task
