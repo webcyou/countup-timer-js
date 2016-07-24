@@ -81,7 +81,7 @@ module CountUpTimer {
       return this.times.isNextDay;
     }
 
-    public subscribe(fn): void {
+    public subscribe(fn: Function): void {
       this.callBackFunction = fn;
       fn(this.times.times, this.times);
     }
