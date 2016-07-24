@@ -7,30 +7,25 @@
 var e = eval, global: NodeJS.Global = e('this');
 
 module CountUpTimer {
+  import Time = CountUpTimerClass.Time;
+
   export class CountUpTimerModel {
     private COUNT_UP_MSEC: number = 1000;
-    private isNextDay: boolean = false;
     private callBackFunction: Function = () => {};
-
-    private H: number = 0;
-    private M: number = 0;
-    private S: number = 0;
-
-    private times: string;
+    private times: Time;
 
     constructor(
       times: any,
       fn?: Function
       ) {
       var that = this;
-      this.setTimesNumber(times.split(/:|：/g));
-      this.setTimes();
+      this.times = Time.fromData(times.split(/:|：/g));
 
       var countFunc: Function = () => {
         that.countUp(() => {
-          that.setTimes();
+          that.times.setTimes();
           if(fn) {
-            fn(that.times, that.isNextDay);
+            fn(that.times.times, that.times);
           }
           that.subscribe(that.callBackFunction);
           countFunc();
@@ -47,63 +42,48 @@ module CountUpTimer {
       }, that.COUNT_UP_MSEC);
     }
 
-    private setTimesNumber(splitTimes: string[]): void {
-      this.H = parseInt(splitTimes[0], 10);
-      this.M = parseInt(splitTimes[1], 10);
-      this.S = parseInt(splitTimes[2], 10);
-    }
-
     private countUpHour(): void {
-      this.H++;
-      if(this.H >= 24) {
-        this.H = 0;
-        this.isNextDay = true;
+      this.times.H++;
+      if(this.times.H >= 24) {
+        this.times.H = 0;
+        this.times.isNextDay = true;
       }
     }
 
     private countUpMinute(): void {
-      this.M++;
-      if(this.M >= 60) {
-        this.M = 0;
+      this.times.M++;
+      if(this.times.M >= 60) {
+        this.times.M = 0;
         this.countUpHour();
       }
     }
 
     private countUpSecond(): void {
-      this.S++;
-      if(this.S >= 60) {
-        this.S = 0;
+      this.times.S++;
+      if(this.times.S >= 60) {
+        this.times.S = 0;
         this.countUpMinute();
       }
-      if(this.isNextDay && this.S !== 0) {
-        this.isNextDay = false;
+      if(this.times.isNextDay && this.times.S !== 0) {
+        this.times.isNextDay = false;
       }
     }
 
-    private numberToString(time: number): string {
-      var strTime: string = String(time);
-      if(time < 10) {
-        strTime = '0' + strTime;
-      }
-      return strTime;
-    }
-
-    private setTimes() {
-      var setStr = this.numberToString;
-      this.times = setStr(this.H) + ':' + setStr(this.M) + ':' + setStr(this.S);
-    }
-
-    public getTimes(): string {
+    public getTimes(): Time {
       return this.times;
     }
 
+    public getTimesStr(): string {
+      return this.times.times;
+    }
+
     public getIsNextDay(): boolean {
-      return this.isNextDay;
+      return this.times.isNextDay;
     }
 
     public subscribe(fn): void {
       this.callBackFunction = fn;
-      fn(this.times, this.isNextDay);
+      fn(this.times.times, this.times);
     }
   }
 }

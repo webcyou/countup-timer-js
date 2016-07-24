@@ -49,7 +49,7 @@ new CountUpTimer(Times, callBack);
 ```
 var timer = new CountUpTimer(Times);
 
-timer.subscribe(function(times, isNextDay) {
+timer.subscribe(function(times, prams) {
   ...
 });
 
@@ -72,11 +72,21 @@ times: string
 "hh:mm:ss"
 ```
 
-isNextDay: boolean
-```
-true
-```
-To become true is the one time of 24:00 .
+prams: Time
+
+### CallBack Parameters Reference
+
+| ParametersName | value         | Detail                | 
+| --------------- |:---------------:| -------------------- |
+| id | number | created date Id |
+| splitTimes | string[] | [hours, minute, second] |
+| H | number | hours |
+| M | number | minute |
+| S | number | minute |
+| times | string | "hh:mm:ss" |
+| isNextDay | boolean | To become true is the one time of 24:00 . |
+| createdAt | string | Time that was created |
+
 
 ### Author
 Daisuke Takayama

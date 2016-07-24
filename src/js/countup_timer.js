@@ -1,23 +1,67 @@
+var CountUpTimerClass;
+(function (CountUpTimerClass) {
+    var Time = (function () {
+        function Time(id, splitTimes, H, M, S, times, isNextDay, createdAt) {
+            this.id = id;
+            this.splitTimes = splitTimes;
+            this.H = H;
+            this.M = M;
+            this.S = S;
+            this.times = times;
+            this.isNextDay = isNextDay;
+            this.createdAt = createdAt;
+            var setStr = this.numberToString;
+            this.id = this.createId();
+            this.H = this.setTimesNumber(this.splitTimes, 0);
+            this.M = this.setTimesNumber(this.splitTimes, 1);
+            this.S = this.setTimesNumber(this.splitTimes, 2);
+            this.times = setStr(this.H) + ':' + setStr(this.M) + ':' + setStr(this.S);
+            this.isNextDay = this.nextDayCheck();
+        }
+        Time.fromData = function (data) {
+            return new Time(null, data, 0, 0, 0, '00:00:00', false, String(new Date()));
+        };
+        Time.prototype.createId = function () {
+            var date = new Date();
+            return parseInt(String(date.getFullYear()) + String(date.getHours()) + String(date.getMinutes()) + String(date.getSeconds()), 10);
+        };
+        Time.prototype.setTimesNumber = function (splitTimes, index) {
+            return parseInt(splitTimes[index], 10);
+        };
+        Time.prototype.numberToString = function (time) {
+            var strTime = String(time);
+            if (time < 10) {
+                strTime = '0' + strTime;
+            }
+            return strTime;
+        };
+        Time.prototype.nextDayCheck = function () {
+            return Boolean(this.H == 0 && this.M == 0 && this.S == 0);
+        };
+        Time.prototype.setTimes = function () {
+            var setStr = this.numberToString;
+            this.times = setStr(this.H) + ':' + setStr(this.M) + ':' + setStr(this.S);
+        };
+        return Time;
+    }());
+    CountUpTimerClass.Time = Time;
+})(CountUpTimerClass || (CountUpTimerClass = {}));
 'use strict';
 var e = eval, global = e('this');
 var CountUpTimer;
 (function (CountUpTimer) {
+    var Time = CountUpTimerClass.Time;
     var CountUpTimerModel = (function () {
         function CountUpTimerModel(times, fn) {
             this.COUNT_UP_MSEC = 1000;
-            this.isNextDay = false;
             this.callBackFunction = function () { };
-            this.H = 0;
-            this.M = 0;
-            this.S = 0;
             var that = this;
-            this.setTimesNumber(times.split(/:|：/g));
-            this.setTimes();
+            this.times = Time.fromData(times.split(/:|：/g));
             var countFunc = function () {
                 that.countUp(function () {
-                    that.setTimes();
+                    that.times.setTimes();
                     if (fn) {
-                        fn(that.times, that.isNextDay);
+                        fn(that.times.times, that.times);
                     }
                     that.subscribe(that.callBackFunction);
                     countFunc();
@@ -32,55 +76,42 @@ var CountUpTimer;
                 fn();
             }, that.COUNT_UP_MSEC);
         };
-        CountUpTimerModel.prototype.setTimesNumber = function (splitTimes) {
-            this.H = parseInt(splitTimes[0], 10);
-            this.M = parseInt(splitTimes[1], 10);
-            this.S = parseInt(splitTimes[2], 10);
-        };
         CountUpTimerModel.prototype.countUpHour = function () {
-            this.H++;
-            if (this.H >= 24) {
-                this.H = 0;
-                this.isNextDay = true;
+            this.times.H++;
+            if (this.times.H >= 24) {
+                this.times.H = 0;
+                this.times.isNextDay = true;
             }
         };
         CountUpTimerModel.prototype.countUpMinute = function () {
-            this.M++;
-            if (this.M >= 60) {
-                this.M = 0;
+            this.times.M++;
+            if (this.times.M >= 60) {
+                this.times.M = 0;
                 this.countUpHour();
             }
         };
         CountUpTimerModel.prototype.countUpSecond = function () {
-            this.S++;
-            if (this.S >= 60) {
-                this.S = 0;
+            this.times.S++;
+            if (this.times.S >= 60) {
+                this.times.S = 0;
                 this.countUpMinute();
             }
-            if (this.isNextDay && this.S !== 0) {
-                this.isNextDay = false;
+            if (this.times.isNextDay && this.times.S !== 0) {
+                this.times.isNextDay = false;
             }
-        };
-        CountUpTimerModel.prototype.numberToString = function (time) {
-            var strTime = String(time);
-            if (time < 10) {
-                strTime = '0' + strTime;
-            }
-            return strTime;
-        };
-        CountUpTimerModel.prototype.setTimes = function () {
-            var setStr = this.numberToString;
-            this.times = setStr(this.H) + ':' + setStr(this.M) + ':' + setStr(this.S);
         };
         CountUpTimerModel.prototype.getTimes = function () {
             return this.times;
         };
+        CountUpTimerModel.prototype.getTimesStr = function () {
+            return this.times.times;
+        };
         CountUpTimerModel.prototype.getIsNextDay = function () {
-            return this.isNextDay;
+            return this.times.isNextDay;
         };
         CountUpTimerModel.prototype.subscribe = function (fn) {
             this.callBackFunction = fn;
-            fn(this.times, this.isNextDay);
+            fn(this.times.times, this.times);
         };
         return CountUpTimerModel;
     }());
