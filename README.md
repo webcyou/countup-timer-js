@@ -44,7 +44,9 @@ npm install countup-timer-js
 new CountUpTimer("hh:mm:ss", callBack);
 ```
 
-***example*
+
+**example**
+
 ```
 new CountUpTimer("12:11:2", function(times, parameters) {
     console.log(times);
