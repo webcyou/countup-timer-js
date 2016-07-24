@@ -1,6 +1,7 @@
 /// <reference path='../_all.ts' />
 
 module CountUpTimerClass {
+  var created_num = 0;
 
   export class Time {
     constructor(
@@ -35,8 +36,7 @@ module CountUpTimerClass {
     }
 
     private createId(): number {
-      var date = new Date();
-      return parseInt(String(date.getFullYear()) + String(date.getHours()) + String(date.getMinutes()) + String(date.getSeconds()), 10);
+      return ++created_num;
     }
 
     private setTimesNumber(splitTimes: string[], index: number): number {

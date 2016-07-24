@@ -1,5 +1,6 @@
 var CountUpTimerClass;
 (function (CountUpTimerClass) {
+    var created_num = 0;
     var Time = (function () {
         function Time(id, splitTimes, H, M, S, times, isNextDay, createdAt) {
             this.id = id;
@@ -20,8 +21,7 @@ var CountUpTimerClass;
             return new Time(null, data, 0, 0, 0, '00:00:00', false, String(new Date()));
         };
         Time.prototype.createId = function () {
-            var date = new Date();
-            return parseInt(String(date.getFullYear()) + String(date.getHours()) + String(date.getMinutes()) + String(date.getSeconds()), 10);
+            return ++created_num;
         };
         Time.prototype.setTimesNumber = function (splitTimes, index) {
             return parseInt(splitTimes[index], 10);
