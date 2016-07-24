@@ -42,6 +42,10 @@ gulp.task('clean.dist', function() {
   return del([DIST_DIR + '/*'], {force: true});
 });
 
+gulp.task('clean.demo', function() {
+  return del([DIST_DEMO + '/*'], {force: true});
+});
+
 gulp.task('ts.clean', function(cb) {
   return del([DIST_DEMO + '/**/*.ts'], {force: true}, cb);
 });
@@ -252,7 +256,7 @@ gulp.task('connect', function() {
  **/
 gulp.task('default', function(callback) {
   runSequence(
-    'clean.dist',
+    'clean.demo',
     'build.ui',
     'watch',
     'serve',
