@@ -96,6 +96,24 @@ prams: Time
 | isNextDay | boolean | To become true is the one time of 24:00 . |
 | createdAt | string | Time that was created |
 
+### Start develop
+```
+npm install
+gulp 
+```
+
+### Start Test
+
+**mocha**
+```
+gulp mocha
+```
+
+**mocha watch**
+```
+gulp mocha.watch
+```
+
 
 ### Author
 Daisuke Takayama

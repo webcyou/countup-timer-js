@@ -14,7 +14,9 @@ var gulp = require("gulp"),
   rename = require("gulp-rename"),
   stripDebug = require('gulp-strip-debug'),
   del = require('del'),
-  runSequence = require('run-sequence');
+  runSequence = require('run-sequence'),
+  mocha = require('gulp-mocha'),
+  gutil = require('gulp-util');
 
 var FILE_NAME = 'countup_timer.js';
 
@@ -228,6 +230,20 @@ gulp.task('build.js', function(callback) {
     'js.copy',
     callback
   );
+});
+
+
+/**
+ * Test Task
+ **/
+gulp.task('mocha', function() {
+  return gulp.src(['test/*.js'], { read: false })
+    .pipe(mocha({ reporter: 'spec'}))
+    .on('error', gutil.log);
+});
+
+gulp.task('mocha.watch', function() {
+  gulp.watch(['test/**'], ['mocha']);
 });
 
 

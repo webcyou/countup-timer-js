@@ -1,6 +1,6 @@
 {
   "name": "countup-timer-js",
-  "version": "1.1.5",
+  "version": "1.1.6",
   "description": "CountUpTimerJS - RealTime CountUp Timer JavaScript Library",
   "main": "dist/countup_timer.js",
   "scripts": {
@@ -12,12 +12,16 @@
   },
   "author": "daisuke.takayama",
   "devDependencies": {
+    "del": "^2.2.1",
     "gulp": "^3.9.0",
     "gulp-autoprefixer": "^3.1.0",
+    "gulp-clean": "^0.3.2",
     "gulp-concat": "^2.6.0",
     "gulp-connect": "^2.2.0",
     "gulp-cssmin": "^0.1.7",
     "gulp-inject": "^1.5.0",
+    "gulp-mocha": "^2.2.0",
+    "gulp-plumber": "^1.1.0",
     "gulp-rename": "^1.2.2",
     "gulp-run-sequence": "^0.3.2",
     "gulp-sass": "^2.3.2",
@@ -25,11 +29,9 @@
     "gulp-tsc": "^1.1.4",
     "gulp-tslint": "^4.3.0",
     "gulp-typescript": "^2.10.0",
-    "gulp-watch": "^4.3.5",
-    "gulp-clean": "^0.3.2",
-    "gulp-plumber": "^1.1.0",
     "gulp-uglify": "^1.5.4",
-    "del": "^2.2.1",
+    "gulp-util": "^3.0.7",
+    "gulp-watch": "^4.3.5",
     "log": "^1.4.0",
     "main-bower-files": "^2.9.0",
     "run-sequence": "^1.1.2",
@@ -41,5 +43,9 @@
   "bugs": {
     "url": "https://github.com/webcyou/countup-timer-js/issues"
   },
-  "homepage": "https://github.com/webcyou/countup-timer-js#readme"
+  "homepage": "https://github.com/webcyou/countup-timer-js#readme",
+  "dependencies": {
+    "chai": "^3.5.0",
+    "power-assert": "^1.4.1"
+  }
 }
