@@ -1,6 +1,6 @@
 {
   "name": "countup-timer-js",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "CountUpTimerJS - RealTime CountUp Timer JavaScript Library",
   "main": "dist/countup_timer.js",
   "scripts": {

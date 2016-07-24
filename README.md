@@ -49,7 +49,7 @@ new CountUpTimer("hh:mm:ss", callBack);
 ```
 var timer = new CountUpTimer("hh:mm:ss");
 
-timer.subscribe(function(times, arameters) {
+timer.subscribe(function(times, parameters) {
   ...
 });
 
