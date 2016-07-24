@@ -102,6 +102,11 @@ npm install
 gulp 
 ```
 
+```
+Server started http://localhost:8088
+LiveReload started on port 35729
+```
+
 ### Start Test
 
 **mocha**
