@@ -41,15 +41,15 @@ npm install countup-timer-js
 ### Start DataSet
 
 ```
-new CountUpTimer(Times, callBack);
+new CountUpTimer("hh:mm:ss", callBack);
 ```
 
 **subscribe**
 
 ```
-var timer = new CountUpTimer(Times);
+var timer = new CountUpTimer("hh:mm:ss");
 
-timer.subscribe(function(times, prams) {
+timer.subscribe(function(times, arameters) {
   ...
 });
 
@@ -60,7 +60,7 @@ timer.subscribe(function(times, prams) {
 
 
 ```
-new CountUpTimer(Times, function(times, isNextDay) {
+new CountUpTimer(Times, function(times, parameters) {
   ...
 });
 ```

@@ -16,9 +16,7 @@ module CountUpTimerClass {
       var setStr = this.numberToString;
 
       this.id = this.createId();
-      this.H = this.setTimesNumber(this.splitTimes, 0);
-      this.M = this.setTimesNumber(this.splitTimes, 1);
-      this.S = this.setTimesNumber(this.splitTimes, 2);
+      this.setHMS();
       this.times = setStr(this.H) + ':' + setStr(this.M) + ':' + setStr(this.S);
       this.isNextDay = this.nextDayCheck();
     }
@@ -43,6 +41,12 @@ module CountUpTimerClass {
 
     private setTimesNumber(splitTimes: string[], index: number): number {
       return parseInt(splitTimes[index], 10);
+    }
+
+    private setHMS() {
+      this.H = this.setTimesNumber(this.splitTimes, 0);
+      this.M = this.setTimesNumber(this.splitTimes, 1);
+      this.S = this.setTimesNumber(this.splitTimes, 2);
     }
 
     private numberToString(time: number): string {

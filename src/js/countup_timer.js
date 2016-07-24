@@ -12,9 +12,7 @@ var CountUpTimerClass;
             this.createdAt = createdAt;
             var setStr = this.numberToString;
             this.id = this.createId();
-            this.H = this.setTimesNumber(this.splitTimes, 0);
-            this.M = this.setTimesNumber(this.splitTimes, 1);
-            this.S = this.setTimesNumber(this.splitTimes, 2);
+            this.setHMS();
             this.times = setStr(this.H) + ':' + setStr(this.M) + ':' + setStr(this.S);
             this.isNextDay = this.nextDayCheck();
         }
@@ -27,6 +25,11 @@ var CountUpTimerClass;
         };
         Time.prototype.setTimesNumber = function (splitTimes, index) {
             return parseInt(splitTimes[index], 10);
+        };
+        Time.prototype.setHMS = function () {
+            this.H = this.setTimesNumber(this.splitTimes, 0);
+            this.M = this.setTimesNumber(this.splitTimes, 1);
+            this.S = this.setTimesNumber(this.splitTimes, 2);
         };
         Time.prototype.numberToString = function (time) {
             var strTime = String(time);
