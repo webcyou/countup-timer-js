@@ -126,4 +126,5 @@ Daisuke Takayama
 
 
 ### License
-MIT
+Copyright (c) 2016 Daisuke Takayama
+Released under the [MIT license](http://opensource.org/licenses/mit-license.php)
